@@ -88,7 +88,7 @@ namespace ePozoriste.WebAPI
 
             services.AddScoped<IDokumentService, DokumentService>();
 
-            var connection = @"data source =.; initial catalog = 160029; integrated security = True;";
+            var connection = @"Server=.;Database=160029;Trusted_connection=True;";
             services.AddDbContext<ePozoristeContext>(options => options.UseSqlServer(connection));
         }
 

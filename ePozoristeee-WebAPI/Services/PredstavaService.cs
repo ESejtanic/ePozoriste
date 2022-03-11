@@ -52,7 +52,7 @@ namespace ePozoriste.WebAPI.Services
                 }
                 else if (search.Sort == 1)
                 {
-                    q = q.OrderByDescending(x => x.PredstavaKupac.Average(a => (double?)a.Ocjena ?? 0.0));
+                    q = q.OrderByDescending(x => x.PredstavaKupac.Average(a => (double?)a.Ocjena) ?? 0.0);
                 }
             }
             var list = q.ToList();
@@ -63,7 +63,7 @@ namespace ePozoriste.WebAPI.Services
             {
                 predstava.ProsjecnaOcjena = _context.PredstavaKupac
                     .Where(x => x.PredstavaId == predstava.PredstavaId)
-                    .Average(x => (decimal?)x.Ocjena) ?? new decimal(0);
+                    .Average(x => (decimal?)x.Ocjena) ?? 0m;
             }
 
             return list2;
