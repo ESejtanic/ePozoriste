@@ -390,7 +390,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "U iducem mjesecu nase pozoriste posjecuje poznati glumac",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 },
                 new Novosti()
                 {
@@ -399,7 +399,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "Poklon publici predstava „Alfa Beta“",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 },
                 new Novosti()
                 {
@@ -408,7 +408,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "testiranje novosti",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 },
                 new Novosti()
                 {
@@ -417,7 +417,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "U umjetničkom dijelu programa publika će imati priliku uživati u nastupu jedne od najboljih interpretatorki sevdalinke mlađe generacije",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 },
                 new Novosti()
                 {
@@ -426,7 +426,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "17. Međunarodni festival komedije ''Mostarska liska''",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 },
                 new Novosti()
                 {
@@ -435,7 +435,7 @@ namespace ePozoriste.WebAPI.DB
                     Tekst = "Pratite nasu fb stranicu i ocekujte iznenadjenja",
                     DatumVrijemeObjave = new DateTime(2022, 1, 1),
                     KorisnikId = 1,
-                    Slika = new byte[0]
+                    Slika = File.ReadAllBytes("news.png")
                 }
                 );
             #endregion
@@ -1373,7 +1373,831 @@ namespace ePozoriste.WebAPI.DB
                 }
                 );
             #endregion
+            #region Dodavanje komentara
+            modelBuilder.Entity<Komentar>().HasData(
+                new Komentar
+                {
+                    KomentarId = 1,
+                    Sadrzaj = "Top",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = true,
+                    KupacId = 8,
+                    PredstavaId = 1
+                },
+                new Komentar
+                {
+                    KomentarId = 2,
+                    Sadrzaj = "ovo je komentar",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = false,
+                    KupacId = 8,
+                    PredstavaId = 3
+                },
+                new Komentar
+                {
+                    KomentarId = 3,
+                    Sadrzaj = "komentar test",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = false,
+                    KupacId = 8,
+                    PredstavaId = 6
+                },
+                new Komentar
+                {
+                    KomentarId = 7,
+                    Sadrzaj = "Vrlo dobra predstava, sve preporuke",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = true,
+                    KupacId = 16,
+                    PredstavaId = 30
+                },
+                new Komentar
+                {
+                    KomentarId = 8,
+                    Sadrzaj = "Nije ispunilo moja ocekivanja.",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = true,
+                    KupacId = 16,
+                    PredstavaId = 23
+                },
+                new Komentar
+                {
+                    KomentarId = 9,
+                    Sadrzaj = "Predobro",
+                    VrijemeKreiranja = new DateTime(2022, 01, 07, 11, 12, 13),
+                    Odobrena = false,
+                    KupacId = 16,
+                    PredstavaId = 26
+                }
+                );
+            #endregion
+            #region Dodavanje kupaca na nagradne igre
+            modelBuilder.Entity<KupacNagradnaIgra>().HasData(
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 5,
+                    NagradnaIgraId = 2,
+                    KupacId = 8
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 6,
+                    NagradnaIgraId = 2,
+                    KupacId = 14
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 7,
+                    NagradnaIgraId = 3,
+                    KupacId = 8
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 8,
+                    NagradnaIgraId = 4,
+                    KupacId = 8
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 9,
+                    NagradnaIgraId = 10,
+                    KupacId = 12
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 10,
+                    NagradnaIgraId = 2,
+                    KupacId = 12
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 11,
+                    NagradnaIgraId = 3,
+                    KupacId = 12
+                },
+                new KupacNagradnaIgra
+                {
+                    KupacNagradnaIgraId = 12,
+                    NagradnaIgraId = 4,
+                    KupacId = 16
+                }
+                );
+            #endregion
 
+            #region Dodavanje sponzora
+            modelBuilder.Entity<Sponzor>().HasData(
+                new Sponzor
+                {
+                    SponzorId = 1,
+                    Naziv = "FIT",
+                    BrojTelefona = "036 111 111"
+                },
+                new Sponzor
+                {
+                    SponzorId = 2,
+                    Naziv = "ETF",
+                    BrojTelefona = "033 123 456"
+                },
+                new Sponzor
+                {
+                    SponzorId = 3,
+                    Naziv = "NSoft",
+                    BrojTelefona = "036 222 222"
+                },
+                new Sponzor
+                {
+                    SponzorId = 4,
+                    Naziv = "Grad Mostar",
+                    BrojTelefona = "036 123 123"
+                },
+                new Sponzor
+                {
+                    SponzorId = 6,
+                    Naziv = "Bingo",
+                    BrojTelefona = "033 111 111"
+                },
+                new Sponzor
+                {
+                    SponzorId = 7,
+                    Naziv = "Grad Sarajevo",
+                    BrojTelefona = "033 123 123"
+                }
+
+                );
+            #endregion
+
+            #region Dodavanje uplata
+            modelBuilder.Entity<Uplata>().HasData(
+                new Uplata
+                {
+                    UplataId = 1,
+                    Naziv = "skolarina",
+                    Svrha = "skolarina fit",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 1
+                },
+                new Uplata
+                {
+                    UplataId = 2,
+                    Naziv = "Racunari",
+                    Svrha = "Potrebna nova oprema",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 1
+                },
+                new Uplata
+                {
+                    UplataId = 3,
+                    Naziv = "Uplata od ETF",
+                    Svrha = "Podrska radu pozorista",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 2
+                },
+                new Uplata
+                {
+                    UplataId = 4,
+                    Naziv = "podrska pozoristu",
+                    Svrha = "test",
+                    Iznos = 7000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 1
+                },
+                new Uplata
+                {
+                    UplataId = 5,
+                    Naziv = "Stipendiranje",
+                    Svrha = "Stipendiranje mladih glumaca",
+                    Iznos = 700,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 4
+                },
+                new Uplata
+                {
+                    UplataId = 6,
+                    Naziv = "Bingo uplata",
+                    Svrha = "Stolice",
+                    Iznos = 2000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 6
+                },
+                new Uplata
+                {
+                    UplataId = 7,
+                    Naziv = "Naziv",
+                    Svrha = "test",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 3
+                },
+                new Uplata
+                {
+                    UplataId = 8,
+                    Naziv = "Hrana i pice",
+                    Svrha = "Hrana",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 6
+                },
+                new Uplata
+                {
+                    UplataId = 9,
+                    Naziv = "Uplata grad Mostar",
+                    Svrha = "Ocuvanje okolisa",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 4
+                },
+                new Uplata
+                {
+                    UplataId = 10,
+                    Naziv = "Nova uplata",
+                    Svrha = "Troskovi struje",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 1
+                },
+                new Uplata
+                {
+                    UplataId = 11,
+                    Naziv = "Donacija grada Sarajevo",
+                    Svrha = "Ocuvanje kvalitete rada",
+                    Iznos = 1000,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 2
+                },
+                new Uplata
+                {
+                    UplataId = 12,
+                    Naziv = "Kostimi",
+                    Svrha = "Za bolje predstave",
+                    Iznos = 800,
+                    DatumUplate = new DateTime(2022, 1, 1, 11, 22, 33),
+                    SponzorId = 7
+                }
+
+                );
+            #endregion
+            #region Dodavanje ulaznica
+            modelBuilder.Entity<Ulaznica>().HasData(
+                new Ulaznica
+                {
+                    PrikazivanjeId = 2,
+                    SjedisteId = 4934,
+                    KupacId = 8,
+                    RezervacijaId = 2,
+                    Qrkod = new byte[0],
+                    UlaznicaId = 1
+                },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4943,
+                        KupacId = 8,
+                        RezervacijaId = 3,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 2
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4915,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 3
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4911,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 4
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4993,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 5
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4993,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 6
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4993,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 7
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4803,
+                        KupacId = 8,
+                        RezervacijaId = 3,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 8
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4933,
+                        KupacId = 8,
+                        RezervacijaId = 3,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 9
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4933,
+                        KupacId = 8,
+                        RezervacijaId = 3,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 10
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4905,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 11
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4905,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 12
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4967,
+                        KupacId = 8,
+                        RezervacijaId = 4,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 13
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4902,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 15
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4902,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 16
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4930,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 17
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4930,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 18
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4964,
+                        KupacId = 8,
+                        RezervacijaId = 3,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 19
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4945,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 20
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4957,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 21
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 3,
+                        SjedisteId = 4803,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 22
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4959,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 23
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4919,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 28
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4921,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 29
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4923,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 30
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4982,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 31
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 2,
+                        SjedisteId = 4974,
+                        KupacId = 8,
+                        RezervacijaId = 2,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 32
+                    },
+                    new Ulaznica
+                    {
+                        PrikazivanjeId = 3,
+                        SjedisteId = 4977,
+                        KupacId = 16,
+                        RezervacijaId = 11,
+                        Qrkod = new byte[0],
+                        UlaznicaId = 33
+                    }
+                );
+            #endregion
+
+            #region Dodavanje rezervacija
+            modelBuilder.Entity<Rezervacije>().HasData(
+              new Rezervacije
+              {
+                  RezervacijaId = 2,
+                  DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                  Odobrena = true,
+                  BrojRezervacije = 3597,
+                  KupacId = 8,
+                  PrikazivanjeId = 1
+              },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 3,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 2710,
+                        KupacId = 8,
+                        PrikazivanjeId = 2
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 4,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 7200,
+                        KupacId = 8,
+                        PrikazivanjeId = 3
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 11,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 5384,
+                        KupacId = 16,
+                        PrikazivanjeId = 4
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 12,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 4276,
+                        KupacId = 16,
+                        PrikazivanjeId = 1
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 13,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 9240,
+                        KupacId = 8,
+                        PrikazivanjeId = 2
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 14,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 8619,
+                        KupacId = 8,
+                        PrikazivanjeId = 3
+                    },
+                    new Rezervacije
+                    {
+                        RezervacijaId = 15,
+                        DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33),
+                        Odobrena = true,
+                        BrojRezervacije = 8021,
+                        KupacId = 8,
+                        PrikazivanjeId = 4
+                    }
+
+                );
+            #endregion
+
+
+            #region Dodavanje notifikacija
+            modelBuilder.Entity<Notifikacija>().HasData(
+                new Notifikacija
+                {
+                    NotifikacijaId = 1,
+                    DatumSlanja = new DateTime(2022, 2, 1, 11, 22, 33),
+                    NovostiId = 4,
+                    IsProcitano = true
+                },
+                new Notifikacija
+                {
+                    NotifikacijaId = 2,
+                    DatumSlanja = new DateTime(2022, 2, 5, 11, 22, 33),
+                    NovostiId = 5,
+                    IsProcitano = false
+                },
+                new Notifikacija
+                {
+                    NotifikacijaId = 3,
+                    DatumSlanja = new DateTime(2022, 2, 10, 11, 22, 33),
+                    NovostiId = 6,
+                    IsProcitano = true
+                },
+                new Notifikacija
+                {
+                    NotifikacijaId = 4,
+                    DatumSlanja = new DateTime(2022, 2, 15, 11, 22, 33),
+                    NovostiId = 7,
+                    IsProcitano = false
+                },
+                new Notifikacija
+                {
+                    NotifikacijaId = 5,
+                    DatumSlanja = new DateTime(2022, 2, 20, 11, 22, 33),
+                    NovostiId = 8,
+                    IsProcitano = false
+                }
+                );
+            #endregion
+
+
+            #region Dodavanje predstava uplata
+            modelBuilder.Entity<PredstavaUplata>().HasData(
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 3,
+                        DatumUplate = new DateTime(2022, 3, 2, 11, 22, 33),
+                        PredstavaId = 1,
+                        UplataId = 1
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 4,
+                        DatumUplate = new DateTime(2022, 3, 4, 11, 22, 33),
+                        PredstavaId = 1,
+                        UplataId = 2
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 5,
+                        DatumUplate = new DateTime(2022, 3, 6, 11, 22, 33),
+                        PredstavaId = 3,
+                        UplataId = 1
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 6,
+                        DatumUplate = new DateTime(2022, 3, 8, 11, 22, 33),
+                        PredstavaId = 6,
+                        UplataId = 4
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 7,
+                        DatumUplate = new DateTime(2022, 3, 9, 11, 22, 33),
+                        PredstavaId = 24,
+                        UplataId = 5
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 8,
+                        DatumUplate = new DateTime(2022, 3, 10, 11, 22, 33),
+                        PredstavaId = 19,
+                        UplataId = 5
+                    },
+                    new PredstavaUplata
+                    {
+                        PredstavaUplataId = 9,
+                        DatumUplate = new DateTime(2022, 3, 11, 11, 22, 33),
+                        PredstavaId = 26,
+                        UplataId = 4
+                    }
+                );
+            #endregion
+
+            #region Dodavanje predstava kupac
+            modelBuilder.Entity<PredstavaKupac>().HasData(
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 6,
+                    Ocjena = 8,
+                    PredstavaId = 3,
+                    KupacId = 8
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 7,
+                    Ocjena = 4.9,
+                    PredstavaId = 1,
+                    KupacId = 8
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 13,
+                    Ocjena = 6,
+                    PredstavaId = 1,
+                    KupacId = 12
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 14,
+                    Ocjena = 5,
+                    PredstavaId = 6,
+                    KupacId = 8
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 15,
+                    Ocjena = 8,
+                    PredstavaId = 25,
+                    KupacId = 16
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 16,
+                    Ocjena = 3.7,
+                    PredstavaId = 29,
+                    KupacId = 16
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 17,
+                    Ocjena = 8,
+                    PredstavaId = 23,
+                    KupacId = 16
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 19,
+                    Ocjena = 10,
+                    PredstavaId = 1,
+                    KupacId = 8
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 21,
+                    Ocjena = 9,
+                    PredstavaId = 1,
+                    KupacId = 16
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 22,
+                    Ocjena = 8,
+                    PredstavaId = 24,
+                    KupacId = 12
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 23,
+                    Ocjena = 7,
+                    PredstavaId = 30,
+                    KupacId = 16
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 24,
+                    Ocjena = 6.5,
+                    PredstavaId = 29,
+                    KupacId = 14
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 25,
+                    Ocjena = 7.7,
+                    PredstavaId = 26,
+                    KupacId = 15
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 26,
+                    Ocjena = 7,
+                    PredstavaId = 25,
+                    KupacId = 13
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 28,
+                    Ocjena = 4,
+                    PredstavaId = 23,
+                    KupacId = 14
+                },
+                new PredstavaKupac
+                {
+                    PredstavaKupacId = 29,
+                    Ocjena = 5,
+                    PredstavaId = 19,
+                    KupacId = 16
+                }
+            );
+            #endregion
+
+            #region Dodavanje dokumenata
+            modelBuilder.Entity<Dokument>().HasData(
+                new Dokument
+                {
+                    DokumentId = 1,
+                    NazivDokumenta = "Antigona",
+                    Sadrzaj = File.ReadAllBytes("antigona.jpg"),
+                    FileName = "antigona.jpg"
+                }
+            );
+            #endregion
         }
     }
 }
