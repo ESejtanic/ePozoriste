@@ -46,7 +46,7 @@ namespace ePozoriste.WebAPI.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.;Database=160029;Trusted_connection=True;");
+                optionsBuilder.UseSqlServer("Server=epozoriste-sql,1433;Database=160029;User=sa;Password=QWElkj132!;ConnectRetryCount=0");
             }
         }
 
