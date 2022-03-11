@@ -540,6 +540,11 @@ namespace ePozoriste.WebAPI.Database
                     .IsRequired()
                     .HasMaxLength(20);
             });
+
+            modelBuilder.Seed();
+            OnModelCreatingPartial(modelBuilder);
         }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
