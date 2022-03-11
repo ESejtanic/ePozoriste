@@ -41,7 +41,7 @@ namespace ePozoriste.WebAPI.DB
 
                new Korisnik()
                {
-                   KorisnikId = 1,
+                   KorisnikId = 2,
                    Ime = "zaposlenik",
                    Prezime = "zaposlenik",
                    Email = "zaposlenik@pozoriste.ba",
@@ -145,7 +145,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "faris@fit.ba",
                     DatumRodjenja = new DateTime(2022, 01, 15),
                     BrojUgovora = 111,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -155,7 +155,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "jasmin@fit.ba",
                     DatumRodjenja = new DateTime(2022, 01, 15),
                     BrojUgovora = 222,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -165,7 +165,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "enver@fit.ba",
                     DatumRodjenja = new DateTime(2022, 01, 15),
                     BrojUgovora = 333,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -175,7 +175,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "admir@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 444,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -185,7 +185,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "denis@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 555,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -195,7 +195,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "amir@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 666,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -205,7 +205,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "mustafa@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 777,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -215,7 +215,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "dinom@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 888,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 },
                 new Glumac()
                 {
@@ -225,7 +225,7 @@ namespace ePozoriste.WebAPI.DB
                     Email = "dinod@fit.ba",
                     DatumRodjenja = new DateTime(2020, 01, 15),
                     BrojUgovora = 999,
-                    Slika = File.ReadAllBytes("actor.jpg"),
+                    Slika = File.ReadAllBytes("actor.png"),
                 }
 
                 );
@@ -303,21 +303,7 @@ namespace ePozoriste.WebAPI.DB
             modelBuilder.Entity<Sala>().HasData(
                 new Sala()
                 {
-                    SalaId = 2,
-                    Naziv = "Sala 1",
-                    Kapacitet = 100,
-                    Klimatizacija = true,
-                    Lat = "43.338877",
-                    Lng = "17.817077"
-                }
-                );
-            #endregion
-
-            #region Dodavanje sala
-            modelBuilder.Entity<Sala>().HasData(
-                new Sala()
-                {
-                    SalaId = 2,
+                    SalaId = 1,
                     Naziv = "Sala 1",
                     Kapacitet = 100,
                     Klimatizacija = true,
@@ -336,6 +322,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Povedi svoju porodicu na predstavu i ostvarite popust od nevjerovatnih 20% na svaku kupljenu ulaznicu!",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -344,6 +331,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Neki opis",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -352,6 +340,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Ucestvuj u nagradnoj igri gdje cemo putem random broja izvuci sretnog dobitnika dvadeset tokena",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -360,6 +349,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Pozoriste casti svoje vjerne posjetioce povodom rodjendana",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -368,6 +358,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Pozoriste casti svoje vjerne posjetioce povodom novogodisnjih praznika",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -376,6 +367,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "Mostar nagradjuje",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 },
                 new NagradnaIgra()
                 {
@@ -384,6 +376,7 @@ namespace ePozoriste.WebAPI.DB
                     Opis = "test",
                     Pocetak = new DateTime(2022, 1, 1),
                     Kraj = new DateTime(2022, 12, 31),
+                    KorisnikId = 1
                 }
                 );
             #endregion
