@@ -31,6 +31,7 @@ namespace ePozoriste.WebAPI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public Model.Kupac Insert(KupacUpsertRequest request)
         {
             return _service.Insert(request);
