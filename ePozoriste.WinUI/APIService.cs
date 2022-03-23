@@ -39,7 +39,25 @@ namespace ePozoriste.WinUI
             {
                 if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    MessageBox.Show("Niste authentificirani");
+                    MessageBox.Show("Niste autentificrani", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return default(T);
+                }
+                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Nemate pravo pristupa", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return default(T);
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 throw;
             }
@@ -49,7 +67,35 @@ namespace ePozoriste.WinUI
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            try
+            {
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    MessageBox.Show("Niste autentificrani", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Nemate pravo pristupa", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return default(T);
+            }
+
         }
 
         public async Task<T> Insert<T>(object request)
@@ -62,15 +108,26 @@ namespace ePozoriste.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    MessageBox.Show("Niste autentificrani", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Nemate pravo pristupa", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
-                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return default(T);
             }
 
@@ -86,15 +143,26 @@ namespace ePozoriste.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    MessageBox.Show("Niste autentificrani", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Nemate pravo pristupa", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
-                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return default(T);
             }
         }
