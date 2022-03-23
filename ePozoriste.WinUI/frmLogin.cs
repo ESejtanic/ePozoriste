@@ -23,15 +23,19 @@ namespace ePozoriste.WinUI
             string username = txtKorisnickoIme.Text;
             try
             {
-                await _service.Get<dynamic>(null);
-                List<Model.Kupac> lista = await _servicelogin.Get<List<Model.Kupac>>(new KupacSearchRequest { KorisnickoIme = username });
-                if (lista.Count > 0)
+                var listaKorisnika = await _service.Get<List<Model.Korisnik>>(null);
+                if(listaKorisnika != null)
                 {
-                    Application.Restart();
-                }
-                else
-                {
-                    DialogResult = DialogResult.OK;
+                    List<Model.Kupac> lista = await _servicelogin.Get<List<Model.Kupac>>(new KupacSearchRequest { KorisnickoIme = username });
+                    if (lista != null && lista.Count > 0)
+                    {
+                        MessageBox.Show("Nije moguće prijaviti se kao kupac!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Restart();
+                    }
+                    else
+                    {
+                        DialogResult = DialogResult.OK;
+                    }
                 }
             }
             catch (Exception ex)
