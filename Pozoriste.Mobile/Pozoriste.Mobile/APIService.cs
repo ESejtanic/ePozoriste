@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Pozoriste.Mobile
-{   
-   public class APIService
+{
+    public class APIService
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
@@ -43,11 +43,29 @@ namespace Pozoriste.Mobile
             }
             catch (FlurlHttpException ex)
             {
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Greška", "Niste autentificirani", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Niste autentificirani", "OK");
+                    return default;
                 }
-                throw;
+                else if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Nemate pravo pristupa", "OK");
+                    return default;
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                    throw;
+                }
             }
         }
 
@@ -68,14 +86,26 @@ namespace Pozoriste.Mobile
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Niste autentificirani", "OK");
                 }
-                await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                else if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Nemate pravo pristupa", "OK");
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                }
                 return default(T);
             }
 
@@ -91,15 +121,26 @@ namespace Pozoriste.Mobile
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Niste autentificirani", "OK");
                 }
+                else if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Nemate pravo pristupa", "OK");
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
-                await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                }
                 return default(T);
             }
 
@@ -115,15 +156,26 @@ namespace Pozoriste.Mobile
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Niste autentificirani", "OK");
                 }
+                else if (ex.Call.Response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Greska", "Nemate pravo pristupa", "OK");
+                }
+                else
+                {
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
-                await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
+                }
                 return default(T);
             }
 
