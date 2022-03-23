@@ -78,10 +78,6 @@ namespace Pozoriste.Mobile.ViewModels
 
             Ulaznica ulaznica = await _ulaznica.Insert<Ulaznica>(req);
             qrCode = ulaznica.Qrkod;
-          
-
-            await Application.Current.MainPage.DisplayAlert(" ", "Izvršeno", "OK");
-
 
             x.BrojTokena -= z;
 

@@ -38,6 +38,7 @@ namespace ePozoriste.WinUI.Rezervacije
                 cmbPrikazivanje.SelectedValue = int.Parse(rezervacija.PrikazivanjeId.ToString());
                
                 checkBox1.Text = rezervacija.Odobrena.ToString();
+                cbPlacena.Checked = rezervacija.Placena;
 
             }
         }
@@ -85,6 +86,7 @@ namespace ePozoriste.WinUI.Rezervacije
             request.BrojRezervacije = random.Next(0, 10000); 
             request.Odobrena = false;
             request.DatumRezervacije = DateTime.Now;
+            request.Placena = cbPlacena.Checked;
             
 
             if (_id.HasValue)

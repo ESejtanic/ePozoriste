@@ -36,6 +36,7 @@
             this.DatumRezervacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojRezervacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Odobrena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Placena = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.KupacId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrikazivanjeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
@@ -69,10 +70,10 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(444, 303);
+            this.groupBox1.Size = new System.Drawing.Size(555, 303);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Rezervacije";
             // 
             // dgvRezervacija
             // 
@@ -84,6 +85,7 @@
             this.DatumRezervacije,
             this.BrojRezervacije,
             this.Odobrena,
+            this.Placena,
             this.KupacId,
             this.PrikazivanjeId});
             this.dgvRezervacija.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -94,7 +96,7 @@
             this.dgvRezervacija.RowHeadersWidth = 51;
             this.dgvRezervacija.RowTemplate.Height = 24;
             this.dgvRezervacija.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRezervacija.Size = new System.Drawing.Size(440, 286);
+            this.dgvRezervacija.Size = new System.Drawing.Size(551, 286);
             this.dgvRezervacija.TabIndex = 0;
             this.dgvRezervacija.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvRezervacija_MouseDoubleClick);
             // 
@@ -135,6 +137,13 @@
             this.Odobrena.ReadOnly = true;
             this.Odobrena.Width = 125;
             // 
+            // Placena
+            // 
+            this.Placena.DataPropertyName = "Placena";
+            this.Placena.HeaderText = "Placena";
+            this.Placena.Name = "Placena";
+            this.Placena.ReadOnly = true;
+            // 
             // KupacId
             // 
             this.KupacId.DataPropertyName = "KupacId";
@@ -159,13 +168,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 366);
+            this.ClientSize = new System.Drawing.Size(583, 366);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbIme);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRezervacije";
-            this.Text = "frmRezervacije";
+            this.Text = "Rezervacije";
             this.Load += new System.EventHandler(this.frmRezervacije_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRezervacija)).EndInit();
@@ -184,6 +193,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumRezervacije;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrojRezervacije;
         private System.Windows.Forms.DataGridViewTextBoxColumn Odobrena;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Placena;
         private System.Windows.Forms.DataGridViewTextBoxColumn KupacId;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrikazivanjeId;
     }

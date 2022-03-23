@@ -21,7 +21,7 @@ namespace ePozoriste.WebAPI.Services
         }
 
 
-        public  List<Model.Rezervacija> Get(RezervacijaSearchRequest search)
+        public List<Model.Rezervacija> Get(RezervacijaSearchRequest search)
         {
 
             var q = _context.Set<Database.Rezervacije>().AsQueryable();
@@ -47,10 +47,13 @@ namespace ePozoriste.WebAPI.Services
                 q = q.Where(s => s.Prikazivanje.PrikazivanjeId == search.PrikazivanjeId);
             }
 
-            //    q = q.OrderBy(x => x.Kupac.Ime);
             var list = q.ToList();
-            //IEnumerable<Database.Rezervacije> list= q.ToList();
-            return _mapper.Map<List<Model.Rezervacija>>(list);
+            var result = _mapper.Map<List<Model.Rezervacija>>(list);
+            foreach (var item in result)
+            {
+                item.UkupnaCijena = _context.Rezervacije.Where(x => x.RezervacijaId == item.RezervacijaId).Select(x => x.Prikazivanje.Cijena).FirstOrDefault();
+            }
+            return result;
         }
 
 
@@ -86,7 +89,7 @@ namespace ePozoriste.WebAPI.Services
             _context.Rezervacije.Remove(entity);
             _context.SaveChanges();
             return _mapper.Map<Model.Rezervacija>(entity);
-           
+
 
         }
     }

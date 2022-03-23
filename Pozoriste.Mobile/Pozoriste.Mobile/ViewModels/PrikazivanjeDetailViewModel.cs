@@ -65,8 +65,8 @@ namespace Pozoriste.Mobile.ViewModels
                BrojRezervacije= random.Next(0, 10000),
                Odobrena=false,
                KupacId=kupac.KupacId,
-               PrikazivanjeId=Prikazivanje.PrikazivanjeId
-
+               PrikazivanjeId=Prikazivanje.PrikazivanjeId,
+               Placena = false
             });
             await Application.Current.MainPage.DisplayAlert(" ", "Izvršena rezervacija", "OK");
             var emailMessenger = CrossMessaging.Current.EmailMessenger;

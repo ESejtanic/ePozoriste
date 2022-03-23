@@ -635,6 +635,8 @@ namespace ePozoriste.WebAPI.Migrations
 
                     b.Property<bool>("Odobrena");
 
+                    b.Property<bool>("Placena");
+
                     b.Property<int>("PrikazivanjeId")
                         .HasColumnName("PrikazivanjeID");
 
@@ -647,14 +649,14 @@ namespace ePozoriste.WebAPI.Migrations
                     b.ToTable("Rezervacije");
 
                     b.HasData(
-                        new { RezervacijaId = 2, BrojRezervacije = 3597, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 1 },
-                        new { RezervacijaId = 3, BrojRezervacije = 2710, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 2 },
-                        new { RezervacijaId = 4, BrojRezervacije = 7200, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 3 },
-                        new { RezervacijaId = 11, BrojRezervacije = 5384, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 16, Odobrena = true, PrikazivanjeId = 4 },
-                        new { RezervacijaId = 12, BrojRezervacije = 4276, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 16, Odobrena = true, PrikazivanjeId = 1 },
-                        new { RezervacijaId = 13, BrojRezervacije = 9240, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 2 },
-                        new { RezervacijaId = 14, BrojRezervacije = 8619, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 3 },
-                        new { RezervacijaId = 15, BrojRezervacije = 8021, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, PrikazivanjeId = 4 }
+                        new { RezervacijaId = 2, BrojRezervacije = 3597, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 1 },
+                        new { RezervacijaId = 3, BrojRezervacije = 2710, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 2 },
+                        new { RezervacijaId = 4, BrojRezervacije = 7200, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 3 },
+                        new { RezervacijaId = 11, BrojRezervacije = 5384, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 16, Odobrena = true, Placena = false, PrikazivanjeId = 4 },
+                        new { RezervacijaId = 12, BrojRezervacije = 4276, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 16, Odobrena = true, Placena = false, PrikazivanjeId = 1 },
+                        new { RezervacijaId = 13, BrojRezervacije = 9240, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 2 },
+                        new { RezervacijaId = 14, BrojRezervacije = 8619, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 3 },
+                        new { RezervacijaId = 15, BrojRezervacije = 8021, DatumRezervacije = new DateTime(2022, 2, 1, 11, 22, 33, 0, DateTimeKind.Unspecified), KupacId = 8, Odobrena = true, Placena = false, PrikazivanjeId = 4 }
                     );
                 });
 

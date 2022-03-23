@@ -122,7 +122,7 @@ namespace Pozoriste.Mobile.Views
 
         private void Button_Clicked_2(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new UlaznicaPage(this.rezervacija, this.odabranoSjedaloObj ));
+            Navigation.PushAsync(new PaymentPage(this.rezervacija, this.odabranoSjedaloObj ));
         }
     }
 }

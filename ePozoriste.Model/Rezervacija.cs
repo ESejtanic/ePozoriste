@@ -20,5 +20,9 @@ namespace ePozoriste.Model
         public string MailKupca { get; set; }
         public DateTime datumPrikazivanja { get; set; }
 
+        public bool Placena { get; set; }
+        public bool NotPlacena { get => !Placena; }
+        public decimal UkupnaCijena { get; set; }
+
     }
 }

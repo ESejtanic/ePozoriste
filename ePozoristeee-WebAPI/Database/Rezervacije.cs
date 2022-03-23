@@ -13,6 +13,7 @@ namespace ePozoriste.WebAPI.Database
         public int RezervacijaId { get; set; }
         public DateTime DatumRezervacije { get; set; }
         public bool Odobrena { get; set; }
+        public bool Placena { get; set; }
         public int BrojRezervacije { get; set; }
         public int KupacId { get; set; }
         public int PrikazivanjeId { get; set; }

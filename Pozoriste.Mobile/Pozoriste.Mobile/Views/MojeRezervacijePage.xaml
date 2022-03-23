@@ -87,8 +87,9 @@
                                         </Label>
                                     </StackLayout>
 
-                                    <Button Clicked="Button_Clicked" Text="Odaberi sjedište" HeightRequest="40" WidthRequest="130" CornerRadius="7" TextColor="White" BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"  ></Button>
-                                    <Button Clicked="Button_Clicked_1" Text="Otkaži" HeightRequest="40" WidthRequest="130" CornerRadius="7" TextColor="White" BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"  ></Button>
+                                    <Button Clicked="Button_Clicked" IsVisible="{Binding NotPlacena}" Text="Odaberi sjedište" HeightRequest="40" WidthRequest="130" CornerRadius="7" TextColor="White" BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"  ></Button>
+                                    <Button Clicked="Button_Clicked_1" IsVisible="{Binding NotPlacena}" Text="Otkaži" HeightRequest="40" WidthRequest="130" CornerRadius="7" TextColor="White" BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"  ></Button>
+                                    <Label IsVisible="{Binding Placena}" Text="PLAĆENO" HeightRequest="40" WidthRequest="130" FontAttributes="Bold" TextColor="LimeGreen" HorizontalOptions="Center" VerticalOptions="Center"  ></Label>
 
                                 </StackLayout>
                             </ViewCell>
