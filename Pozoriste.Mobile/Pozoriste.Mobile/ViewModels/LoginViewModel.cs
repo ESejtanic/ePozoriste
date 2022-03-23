@@ -42,27 +42,33 @@ namespace Pozoriste.Mobile.ViewModels
 
             try
             {
-                await _service.Get<dynamic>(null);
-
                 Kupac kupac = null;
-                List<Kupac> lista = await _serviceKupci.Get<List<Kupac>>(null);
-                foreach (var k in lista)
+                var listKorisnika = await _service.Get<List<Korisnik>>(null);
+                if (listKorisnika != null)
                 {
-                    if (k.KorisnickoIme == Username)
+                    List<Kupac> lista = await _serviceKupci.Get<List<Kupac>>(null);
+                    if (lista != null)
                     {
-                        kupac = k;
-                        break;
+                        foreach (var k in lista)
+                        {
+                            if (k.KorisnickoIme == Username)
+                            {
+                                kupac = k;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (kupac != null)
+                    {
+                        Application.Current.MainPage = new MainPage();
+                    }
+                    else
+                    {
+                        Application.Current.MainPage = new MainPageAdmin();
                     }
                 }
 
-                if(kupac != null)
-                {
-                    Application.Current.MainPage = new MainPage();
-                }
-                else
-                {
-                    Application.Current.MainPage = new MainPageAdmin();
-                }
             }
             catch (Exception ex)
             {
@@ -72,7 +78,7 @@ namespace Pozoriste.Mobile.ViewModels
                 IsBusy = false;
             }
 
-          
+
         }
     }
 }
