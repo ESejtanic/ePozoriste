@@ -6,12 +6,13 @@ using ePozoriste.Model.Requests;
 using ePozoriste.WebAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ePozoriste.WebAPI.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NagradnaIgraMobileController : ControllerBase
     {
         private readonly INagradnaIgraService _service;

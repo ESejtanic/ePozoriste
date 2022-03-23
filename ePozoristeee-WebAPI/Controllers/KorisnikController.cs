@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ePozoriste.WebAPI.Controllers
 {
 
-   [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KorisnikController : ControllerBase

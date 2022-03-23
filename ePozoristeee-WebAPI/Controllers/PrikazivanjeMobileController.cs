@@ -6,10 +6,12 @@ using ePozoriste.Model.Requests;
 using ePozoriste.WebAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ePozoriste.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class PrikazivanjeMobileController : ControllerBase
     {

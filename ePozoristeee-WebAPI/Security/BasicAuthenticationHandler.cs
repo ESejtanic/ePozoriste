@@ -71,6 +71,8 @@ namespace ePozoriste.WebAPI.Security
                     claims.Add(new Claim(ClaimTypes.Role, role.Uloga.Naziv));
                 }
             }
+            else
+                claims.Add(new Claim(ClaimTypes.Role, "Kupac"));
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);
             var ticket = new AuthenticationTicket(principal, Scheme.Name);

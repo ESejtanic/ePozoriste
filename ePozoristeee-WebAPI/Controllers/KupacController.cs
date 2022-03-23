@@ -7,12 +7,14 @@ using ePozoriste.Model.Requests;
 using ePozoriste.WebAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ePozoriste.WebAPI.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class KupacController : ControllerBase
     {
         private readonly IKupacService _service;
