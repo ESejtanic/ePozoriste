@@ -30,14 +30,14 @@ namespace ePozoriste.WebAPI.Controllers
             return _service.Get(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPost]
         public Model.Predstava Insert(PredstavaUpsertRequest request)
         {
             return _service.Insert(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPut("{id}")]
         public Model.Predstava Update(int id, [FromBody]PredstavaUpsertRequest request)
         {
