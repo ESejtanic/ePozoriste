@@ -29,14 +29,14 @@ namespace ePozoriste.WebAPI.Controllers
             return _service.Get(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPost]
         public Model.Prikazivanje Insert(PrikazivanjeUpsertRequest request)
         {
             return _service.Insert(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPut("{id}")]
         public Model.Prikazivanje Update(int id, [FromBody]PrikazivanjeUpsertRequest request)
         {

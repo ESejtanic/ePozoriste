@@ -21,18 +21,22 @@ namespace ePozoriste.WinUI.Korisnik
 
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
-                var search = new KorisnikSearchRequest()
-                {
-                    Ime = txtIme.Text,
-                    Prezime = txtPrezime.Text,
-                };
+            await Prikazi();
 
-                var list = await _apiService.Get<List<Model.Korisnik>>(search);
-                dgvKorisnik.AutoGenerateColumns = false;
-                dgvKorisnik.DataSource = list;
-            
-        }   
-     
+        }
+
+        private async Task Prikazi()
+        {
+            var search = new KorisnikSearchRequest()
+            {
+                Ime = txtIme.Text,
+                Prezime = txtPrezime.Text,
+            };
+
+            var list = await _apiService.Get<List<Model.Korisnik>>(search);
+            dgvKorisnik.AutoGenerateColumns = false;
+            dgvKorisnik.DataSource = list;
+        }
 
         private void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -40,6 +44,33 @@ namespace ePozoriste.WinUI.Korisnik
 
             frmKorisnikDetails frm = new frmKorisnikDetails(korisnikId);
             frm.Show();
+        }
+
+        private async void btnDodaj_Click(object sender, EventArgs e)
+        {
+            Model.Korisnik korisnik = new Model.Korisnik();
+            var username = APIService.Username;
+            List<Model.Korisnik> lista = await _apiService.Get<List<Model.Korisnik>>(null);
+            foreach (var k in lista)
+            {
+                if (k.KorisnickoIme == username)
+                {
+                    korisnik = k;
+                    break;
+                }
+            }
+            if (korisnik.Uloge != null && korisnik.Uloge.Contains("Administrator"))
+            {
+                frmKorisnikDetails frm = new frmKorisnikDetails();
+                frm.ShowDialog();
+                await Prikazi();
+            }
+            else
+            {
+                MessageBox.Show("Nemate pravo pristupa!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
     }
 }

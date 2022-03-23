@@ -75,7 +75,15 @@ namespace ePozoriste.WebAPI.Services
             }
 
             var list = query.ToList();
-            return _mapper.Map<List<Model.Korisnik>>(list);
+            var result = _mapper.Map<List<Model.Korisnik>>(list);
+            foreach (var item in result)
+            {
+                item.Uloge = "";
+                var uloge = _context.KorisnikUloga.Where(x => x.KorisnikId == item.KorisnikId).Select(x => x.Uloga.Naziv).ToList();
+                if (uloge.Count > 0)
+                    item.Uloge = string.Join(',', uloge);
+            }
+            return result;
         }
 
         public Model.Korisnik GetById(int id)

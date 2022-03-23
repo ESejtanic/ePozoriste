@@ -29,14 +29,14 @@ namespace ePozoriste.WebAPI.Controllers
             return _service.Get(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPost]
         public Model.NagradnaIgra Insert(NagradnaIgraInsertRequest request)
         {
             return _service.Insert(request);
         }
 
-        [Authorize(Roles = "Zaposlenik")]
+        [Authorize(Roles = "Administrator,Zaposlenik")]
         [HttpPut("{id}")]
         public Model.NagradnaIgra Update(int id, [FromBody]NagradnaIgraInsertRequest request)
         {

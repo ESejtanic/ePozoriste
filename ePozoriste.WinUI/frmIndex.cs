@@ -16,6 +16,7 @@ using ePozoriste.WinUI.Ulaznica;
 using ePozoriste.WinUI.Uplata;
 using ePozoriste.WinUI.Zanr;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ePozoriste.WinUI
@@ -23,6 +24,7 @@ namespace ePozoriste.WinUI
     public partial class frmIndex : Form
     {
         private int childFormNumber = 0;
+        APIService _apiService = new APIService("korisnik");
 
         public frmIndex()
         {
@@ -360,11 +362,30 @@ namespace ePozoriste.WinUI
 
         }
         
-        private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmKorisnikDetails frm = new frmKorisnikDetails();
-            frm.MdiParent = this;
-            frm.Show();
+            Model.Korisnik korisnik = new Model.Korisnik();
+            var username = APIService.Username;
+            List<Model.Korisnik> lista = await _apiService.Get<List<Model.Korisnik>>(null);
+            foreach (var k in lista)
+            {
+                if (k.KorisnickoIme == username)
+                {
+                    korisnik = k;
+                    break;
+                }
+            }
+            if (korisnik.Uloge != null && korisnik.Uloge.Contains("Administrator"))
+            {
+                frmKorisnikDetails frm = new frmKorisnikDetails();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nemate pravo pristupa!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void unosToolStripMenuItem1_Click_1(object sender, EventArgs e)

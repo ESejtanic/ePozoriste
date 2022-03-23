@@ -31,17 +31,17 @@
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.grpKorisnici = new System.Windows.Forms.GroupBox();
             this.dgvKorisnik = new System.Windows.Forms.DataGridView();
-            this.txtIme = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPrezime = new System.Windows.Forms.TextBox();
-            this.btnDodaj = new System.Windows.Forms.Button();
             this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnickoIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtIme = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPrezime = new System.Windows.Forms.TextBox();
+            this.btnDodaj = new System.Windows.Forms.Button();
             this.grpKorisnici.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnik)).BeginInit();
             this.SuspendLayout();
@@ -86,47 +86,6 @@
             this.dgvKorisnik.Size = new System.Drawing.Size(564, 325);
             this.dgvKorisnik.TabIndex = 0;
             // 
-            // txtIme
-            // 
-            this.txtIme.Location = new System.Drawing.Point(63, 30);
-            this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(143, 20);
-            this.txtIme.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Ime";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Prezime";
-            // 
-            // txtPrezime
-            // 
-            this.txtPrezime.Location = new System.Drawing.Point(292, 30);
-            this.txtPrezime.Name = "txtPrezime";
-            this.txtPrezime.Size = new System.Drawing.Size(143, 20);
-            this.txtPrezime.TabIndex = 6;
-            // 
-            // btnDodaj
-            // 
-            this.btnDodaj.Location = new System.Drawing.Point(481, 410);
-            this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(75, 23);
-            this.btnDodaj.TabIndex = 7;
-            this.btnDodaj.Text = "Dodaj novi";
-            this.btnDodaj.UseVisualStyleBackColor = true;
-            // 
             // KorisnikId
             // 
             this.KorisnikId.DataPropertyName = "KorisnikId";
@@ -169,6 +128,48 @@
             this.KorisnickoIme.HeaderText = "Korisnicko ime";
             this.KorisnickoIme.Name = "KorisnickoIme";
             this.KorisnickoIme.ReadOnly = true;
+            // 
+            // txtIme
+            // 
+            this.txtIme.Location = new System.Drawing.Point(63, 30);
+            this.txtIme.Name = "txtIme";
+            this.txtIme.Size = new System.Drawing.Size(143, 20);
+            this.txtIme.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Ime";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(242, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Prezime";
+            // 
+            // txtPrezime
+            // 
+            this.txtPrezime.Location = new System.Drawing.Point(292, 30);
+            this.txtPrezime.Name = "txtPrezime";
+            this.txtPrezime.Size = new System.Drawing.Size(143, 20);
+            this.txtPrezime.TabIndex = 6;
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Location = new System.Drawing.Point(481, 410);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(75, 23);
+            this.btnDodaj.TabIndex = 7;
+            this.btnDodaj.Text = "Dodaj novi";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
             // frmKorisnik
             // 
