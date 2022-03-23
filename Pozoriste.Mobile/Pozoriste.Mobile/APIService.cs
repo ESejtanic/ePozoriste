@@ -58,12 +58,15 @@ namespace Pozoriste.Mobile
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                        await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                     }
 
-                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                     throw;
                 }
             }
@@ -99,12 +102,14 @@ namespace Pozoriste.Mobile
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                        await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                     }
-
-                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                 }
                 return default(T);
             }
@@ -134,12 +139,14 @@ namespace Pozoriste.Mobile
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                        await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                     }
-
-                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                 }
                 return default(T);
             }
@@ -169,12 +176,14 @@ namespace Pozoriste.Mobile
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                        await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                     }
-
-                    await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                 }
                 return default(T);
             }
