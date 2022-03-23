@@ -63,7 +63,7 @@ namespace ePozoriste.WinUI.Ulaznica
         private async void cmbKupacIme_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbKupacIme.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadUlaznice(id);
             }

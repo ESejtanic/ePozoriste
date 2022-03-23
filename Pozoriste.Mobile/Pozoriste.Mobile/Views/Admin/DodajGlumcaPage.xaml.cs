@@ -33,17 +33,21 @@ namespace Pozoriste.Mobile.Views.Admin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Ime.Text, @"^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(this.Ime.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
-                await DisplayAlert("Greška", "Naziv se sastoji samo od slova", "OK");
+                await DisplayAlert("Greška", "Polje ime se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Prezime.Text, @"^[a-zA-Z]+$"))
+            else if (!Regex.IsMatch(this.Prezime.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
-                await DisplayAlert("Greška", "Polje opis se sastoji samo od slova", "OK");
+                await DisplayAlert("Greška", "Polje prezime se sastoji samo od slova", "OK");
             }
             else if (this.DatumRodjena.Date <= new DateTime(1920, 01, 01))
             {
                 await DisplayAlert("Greška", "Neispravan datum", "OK");
+            }
+            else if (!Regex.IsMatch(this.Email.Text, @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+            {
+                await DisplayAlert("Greška", "Neispravan format email-a!", "OK");
             }
             else if (!Regex.IsMatch(this.BrojUgovora.Text, @"^[0-9]+$"))
             {

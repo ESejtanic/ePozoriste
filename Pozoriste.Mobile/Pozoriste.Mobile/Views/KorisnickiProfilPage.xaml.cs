@@ -31,11 +31,11 @@ namespace Pozoriste.Mobile.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Ime.Text, @"^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(this.Ime.Text, @"^[a-zA-ZšđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Ime se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Prezime.Text, @"^[a-zA-Z]+$"))
+            else if (!Regex.IsMatch(this.Prezime.Text, @"^[a-zA-ZšđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Prezime se sastoji samo od slova", "OK");
             }
@@ -47,7 +47,7 @@ namespace Pozoriste.Mobile.Views
             {
                 await DisplayAlert("Greška", "Neispravan format email-a!", "OK");
             }
-            else if (!Regex.IsMatch(this.KorisnickoIme.Text, @"^(?=.{4,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"))
+            else if (!Regex.IsMatch(this.KorisnickoIme.Text, @"^(?=.{4,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._šđčćžŠĐČĆŽ]+(?<![_.])$"))
             {
                 await DisplayAlert("Greška", "Neispravan format ili dužina korisničkog imena (4-40)", "OK");
             }

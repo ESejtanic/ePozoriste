@@ -48,7 +48,6 @@ namespace ePozoriste.WinUI.Glumac
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 
@@ -103,7 +102,7 @@ namespace ePozoriste.WinUI.Glumac
                 errorProvider.SetError(txtIme, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtIme.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtIme.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider.SetError(txtIme, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
@@ -121,7 +120,7 @@ namespace ePozoriste.WinUI.Glumac
                 errorProvider.SetError(txtPrezime, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtPrezime.Text, @"^[a-zA-Z -]+$"))
+            else if (!Regex.IsMatch(txtPrezime.Text, @"^[a-zA-Z -šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider.SetError(txtPrezime, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;

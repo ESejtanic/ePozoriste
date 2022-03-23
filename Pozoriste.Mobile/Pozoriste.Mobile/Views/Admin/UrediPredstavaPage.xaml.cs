@@ -35,19 +35,19 @@ namespace Pozoriste.Mobile.Views.Admin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z ]+$"))
+            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Naziv se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Reziser.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(this.Reziser.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Režiser polje se sastoji samo od slova", "OK");
             }
             else if (!Regex.IsMatch(this.Trajanje.Text, @"^[0-9]+$"))
             {
-                await DisplayAlert("Greška", "Format telefona je: +123 45 678 910", "OK");
+                await DisplayAlert("Greška", "Trajanje se sastoji samo od cifara", "OK");
             }
-            else if (!Regex.IsMatch(this.Opis.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(this.Opis.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Opis se sastoji samo od slova", "OK");
             }

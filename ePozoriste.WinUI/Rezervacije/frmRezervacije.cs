@@ -57,7 +57,7 @@ namespace ePozoriste.WinUI.Rezervacije
         private async void cmbIme_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbIme.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadRezervacije(id);
             }

@@ -19,7 +19,7 @@ namespace ePozoriste.WinUI.Uplata
         private readonly APIService _uplata = new APIService("uplata");
         private int? _id = null;
 
-        
+
         public frmUplata(int? uplataId = null)
         {
             InitializeComponent();
@@ -44,17 +44,17 @@ namespace ePozoriste.WinUI.Uplata
         private async Task LoadSponzor()
         {
             var result = await _sponzor.Get<List<Model.Sponzor>>(null);
-           cmbSponzor.DisplayMember = "Naziv";
-           cmbSponzor.ValueMember = "SponzorId";
-           cmbSponzor.SelectedItem = null;
-           cmbSponzor.SelectedText = "--Odaberite--";
-           cmbSponzor.DataSource = result;
+            cmbSponzor.DisplayMember = "Naziv";
+            cmbSponzor.ValueMember = "SponzorId";
+            cmbSponzor.SelectedItem = null;
+            cmbSponzor.SelectedText = "--Odaberite--";
+            cmbSponzor.DataSource = result;
         }
 
         private async void cmbSponzor_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbSponzor.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadUplate(id);
             }
@@ -76,29 +76,34 @@ namespace ePozoriste.WinUI.Uplata
             if (this.ValidateChildren())
             {
                 var idObj = cmbSponzor.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int sponzorId))
-            {
-                request.SponzorId = sponzorId;
-                request.Naziv = txtNaziv.Text;
-                request.Iznos = double.Parse(txtIznos.Text);
-                request.Svrha = txtSvrhqa.Text;
-                request.DatumUplate = dateTimePicker1.Value;
-            }
-            if (_id.HasValue)
-            {
-                await _uplata.Update<Model.Uplata>(_id.Value, request);
-            }
-            else
-            {
-                await _uplata.Insert<Model.Uplata>(request);
-            }
-            MessageBox.Show("Uspješno sačuvani podaci");
+                if (idObj != null && int.TryParse(idObj.ToString(), out int sponzorId))
+                {
+                    request.SponzorId = sponzorId;
+                    request.Naziv = txtNaziv.Text;
+                    request.Iznos = double.Parse(txtIznos.Text);
+                    request.Svrha = txtSvrhqa.Text;
+                    request.DatumUplate = dateTimePicker1.Value;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite sponzora");
+                    return;
+                }
+
+                if (_id.HasValue)
+                {
+                    await _uplata.Update<Model.Uplata>(_id.Value, request);
+                }
+                else
+                {
+                    await _uplata.Insert<Model.Uplata>(request);
+                }
+                MessageBox.Show("Uspješno sačuvani podaci");
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 
@@ -117,7 +122,7 @@ namespace ePozoriste.WinUI.Uplata
                 errorProvider1.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider1.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
@@ -151,11 +156,6 @@ namespace ePozoriste.WinUI.Uplata
             if (string.IsNullOrEmpty(txtSvrhqa.Text))
             {
                 errorProvider1.SetError(txtSvrhqa, Properties.Resources.Validation_RequiredField);
-                e.Cancel = true;
-            }
-            else if (!Regex.IsMatch(txtSvrhqa.Text, @"^[a-zA-Z ]+$"))
-            {
-                errorProvider1.SetError(txtSvrhqa, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
             }
             else

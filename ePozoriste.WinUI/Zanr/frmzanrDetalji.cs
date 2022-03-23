@@ -62,7 +62,7 @@ namespace ePozoriste.WinUI.Zanr
                 errorProvider1.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider1.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;

@@ -66,7 +66,6 @@ namespace ePozoriste.WinUI.Novosti
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 
@@ -122,7 +121,7 @@ namespace ePozoriste.WinUI.Novosti
                 errorProvider.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
@@ -140,7 +139,7 @@ namespace ePozoriste.WinUI.Novosti
                 errorProvider.SetError(richTextBtxtTekstox1, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(richTextBtxtTekstox1.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(richTextBtxtTekstox1.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 errorProvider.SetError(richTextBtxtTekstox1, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;

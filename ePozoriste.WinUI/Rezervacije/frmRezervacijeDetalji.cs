@@ -19,7 +19,7 @@ namespace ePozoriste.WinUI.Rezervacije
 
         private int? _id = null;
 
-        public frmRezervacijeDetalji(int? rezervacijaId=null)
+        public frmRezervacijeDetalji(int? rezervacijaId = null)
         {
             InitializeComponent();
             _id = rezervacijaId;
@@ -36,8 +36,9 @@ namespace ePozoriste.WinUI.Rezervacije
                 dateTimePicker1.Value = rezervacija.DatumRezervacije;
                 cmbKupac.SelectedValue = int.Parse(rezervacija.KupacId.ToString());
                 cmbPrikazivanje.SelectedValue = int.Parse(rezervacija.PrikazivanjeId.ToString());
-               
+
                 checkBox1.Text = rezervacija.Odobrena.ToString();
+                checkBox1.Checked = rezervacija.Odobrena;
                 cbPlacena.Checked = rezervacija.Placena;
 
             }
@@ -71,39 +72,48 @@ namespace ePozoriste.WinUI.Rezervacije
             {
                 var idObj = cmbKupac.SelectedValue;
 
-            if (int.TryParse(idObj.ToString(), out int kupacId))
-            {
-                request.KupacId = kupacId;
-            }
+                if (idObj != null && int.TryParse(idObj.ToString(), out int kupacId))
+                {
+                    request.KupacId = kupacId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite kupca");
+                    return;
+                }
 
-            var prikazivanjeObj = cmbPrikazivanje.SelectedValue;
+                var prikazivanjeObj = cmbPrikazivanje.SelectedValue;
 
-            if (int.TryParse(prikazivanjeObj.ToString(), out int prikazivanjeId))
-            {
-                request.PrikazivanjeId = prikazivanjeId;
-            }
+                if (prikazivanjeObj != null && int.TryParse(prikazivanjeObj.ToString(), out int prikazivanjeId))
+                {
+                    request.PrikazivanjeId = prikazivanjeId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite prikazivanje");
+                    return;
+                }
 
-            request.BrojRezervacije = random.Next(0, 10000); 
-            request.Odobrena = false;
-            request.DatumRezervacije = DateTime.Now;
-            request.Placena = cbPlacena.Checked;
-            
+                request.BrojRezervacije = random.Next(0, 10000);
+                request.Odobrena = false;
+                request.DatumRezervacije = DateTime.Now;
+                request.Placena = cbPlacena.Checked;
 
-            if (_id.HasValue)
-            {
-                await _rezervacije.Update<Model.Rezervacija>(_id.Value, request);
-            }
-            else
-            {
-                await _rezervacije.Insert<Model.Rezervacija>(request);
-            }
-            MessageBox.Show("Uspješno sačuvani podaci");
-            this.Close();
+
+                if (_id.HasValue)
+                {
+                    await _rezervacije.Update<Model.Rezervacija>(_id.Value, request);
+                }
+                else
+                {
+                    await _rezervacije.Insert<Model.Rezervacija>(request);
+                }
+                MessageBox.Show("Uspješno sačuvani podaci");
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 

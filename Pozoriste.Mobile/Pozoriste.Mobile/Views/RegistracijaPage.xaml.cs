@@ -28,33 +28,33 @@ namespace Pozoriste.Mobile.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Ime.Text, @"^[a-zA-Z]+$"))
+            if (this.Ime.Text == null || !Regex.IsMatch(this.Ime.Text, @"^[a-zA-ZšđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Ime se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Prezime.Text, @"^[a-zA-Z]+$"))
+            else if (this.Prezime.Text == null || !Regex.IsMatch(this.Prezime.Text, @"^[a-zA-ZšđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Prezime se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.BrojTelefona.Text, @"^[+]{1}\d{3}[ ]?\d{2}[ ]?\d{3}[ ]?\d{3}"))
+            else if (this.BrojTelefona.Text == null || !Regex.IsMatch(this.BrojTelefona.Text, @"^[+]{1}\d{3}[ ]?\d{2}[ ]?\d{3}[ ]?\d{3}"))
             {
                 await DisplayAlert("Greška", "Format telefona je: +123 45 678 910", "OK");
             }
-            else if (!Regex.IsMatch(this.Email.Text, @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+            else if (this.Email.Text == null || !Regex.IsMatch(this.Email.Text, @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
             {
                 await DisplayAlert("Greška", "Neispravan format email-a!", "OK");
 
             }
-            else if (!Regex.IsMatch(this.KorisnickoIme.Text, @"^(?=.{4,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"))
+            else if (this.KorisnickoIme.Text == null || !Regex.IsMatch(this.KorisnickoIme.Text, @"^(?=.{4,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._šđčćžŠĐČĆŽ]+(?<![_.])$"))
             {
                 await DisplayAlert("Greška", "Neispravan format ili dužina korisničkog imena (4-40)", "OK");
             }
-            else if (string.IsNullOrWhiteSpace(this.Password.Text))
+            else if (this.Password.Text == null || string.IsNullOrWhiteSpace(this.Password.Text))
             {
                 await DisplayAlert("Greška", "Morate unijeti lozinku", "OK");
 
             }
-            else if (this.Password.Text != this.PasswordPotvrda.Text)
+            else if (this.PasswordPotvrda.Text == null || this.Password.Text != this.PasswordPotvrda.Text)
             {
                 await DisplayAlert("Greška", "Lozinke moraju biti iste", "OK");
 

@@ -70,23 +70,33 @@ namespace ePozoriste.WinUI.Prikazivanje
             {
                 var idObj = cmbPredstava.SelectedValue;
 
-            if (int.TryParse(idObj.ToString(), out int predstavaId))
-            {
-                request.PredstavaId = predstavaId;
-            }
+                if (idObj != null && int.TryParse(idObj.ToString(), out int predstavaId))
+                {
+                    request.PredstavaId = predstavaId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite predstavu.");
+                    return;
+                }
 
-            var salaIdObj = cmbSala.SelectedValue;
+                var salaIdObj = cmbSala.SelectedValue;
 
-            if (int.TryParse(salaIdObj.ToString(), out int salaId))
-            {
-                request.SalaId = salaId;
-            }
+                if (salaIdObj != null && int.TryParse(salaIdObj.ToString(), out int salaId))
+                {
+                    request.SalaId = salaId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite salu.");
+                    return;
+                }
 
-            request.DatumPrikazivanja = dateTimePicker1.Value;
-            request.Cijena =Convert.ToDecimal(txtCijena.Text);
+                request.DatumPrikazivanja = dateTimePicker1.Value;
+                request.Cijena = Convert.ToDecimal(txtCijena.Text);
 
-            if (_id.HasValue)
-            {
+                if (_id.HasValue)
+                {
                     try
                     {
                         await _prikazivanje.Update<Model.Prikazivanje>(_id.Value, request);
@@ -103,8 +113,8 @@ namespace ePozoriste.WinUI.Prikazivanje
                         }
                     }
                 }
-            else
-            {
+                else
+                {
                     try
                     {
                         await _prikazivanje.Insert<Model.Prikazivanje>(request);
@@ -121,14 +131,13 @@ namespace ePozoriste.WinUI.Prikazivanje
                         }
                     }
                 }
-        }
+            }
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
-    }
+            }
 
-}
+        }
 
         private void cmbPredstava_Validating(object sender, CancelEventArgs e)
         {
@@ -149,9 +158,14 @@ namespace ePozoriste.WinUI.Prikazivanje
                 errorProvider.SetError(txtCijena, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtCijena.Text, @"^[0-9]+$"))
+            else if (!decimal.TryParse(txtCijena.Text, out var value))
             {
                 errorProvider.SetError(txtCijena, Properties.Resources.NeispravanFormat);
+                e.Cancel = true;
+            }
+            else if (value <= 0)
+            {
+                errorProvider.SetError(txtCijena, "Cijena mora biti veća od 0");
                 e.Cancel = true;
             }
             else
@@ -160,6 +174,6 @@ namespace ePozoriste.WinUI.Prikazivanje
             }
         }
 
-  
+
     }
 }

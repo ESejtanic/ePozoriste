@@ -34,7 +34,7 @@ namespace Pozoriste.Mobile.Views.Admin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Naziv se sastoji samo od slova", "OK");
             }

@@ -52,7 +52,7 @@ namespace ePozoriste.WinUI.Predstava
         private async void cmbZanr_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbZanr.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadPredstave(id);
             }
@@ -73,7 +73,7 @@ namespace ePozoriste.WinUI.Predstava
             if (ValidateChildren())
             {
                 var idObj = cmbZanr.SelectedValue;
-                if (int.TryParse(idObj.ToString(), out int zanrid))
+                if (idObj != null && int.TryParse(idObj.ToString(), out int zanrid))
                 {
                     request.ZanrId = zanrid;
 
@@ -81,48 +81,52 @@ namespace ePozoriste.WinUI.Predstava
                     request.Opis = txtOpis.Text;
                     request.Reziser = txtReziser.Text;
                     request.Trajanje = int.Parse(txtTrajanje.Text);
-                }
-                if (_id.HasValue)
-                {
-                    try
-                    {
-                        await _predstave.Update<Model.Predstava>(_id.Value, request);
-                        MessageBox.Show("Uspješno sačuvani podaci");
-                        this.Close();
-                    }
 
-                    catch (Exception)
+                    if (_id.HasValue)
                     {
-                        DialogResult r = MessageBox.Show("Nemate pravo pristupa");
-                        if (r == DialogResult.OK)
+                        try
                         {
+                            await _predstave.Update<Model.Predstava>(_id.Value, request);
+                            MessageBox.Show("Uspješno sačuvani podaci");
                             this.Close();
+                        }
+
+                        catch (Exception)
+                        {
+                            DialogResult r = MessageBox.Show("Nemate pravo pristupa");
+                            if (r == DialogResult.OK)
+                            {
+                                this.Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            await _predstave.Insert<Model.Predstava>(request);
+                            MessageBox.Show("Uspješno sačuvani podaci");
+                            this.Close();
+                        }
+
+                        catch (Exception)
+                        {
+                            DialogResult r = MessageBox.Show("Nemate pravo pristupa");
+                            if (r == DialogResult.OK)
+                            {
+                                this.Close();
+                            }
                         }
                     }
                 }
                 else
                 {
-                    try
-                    {
-                        await _predstave.Insert<Model.Predstava>(request);
-                        MessageBox.Show("Uspješno sačuvani podaci");
-                        this.Close();
-                    }
-
-                    catch (Exception)
-                    {
-                        DialogResult r = MessageBox.Show("Nemate pravo pristupa");
-                        if (r == DialogResult.OK)
-                        {
-                            this.Close();
-                        }
-                    }
+                    MessageBox.Show("Odaberite žanr");
                 }
             }
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         } 
 
@@ -152,7 +156,7 @@ namespace ePozoriste.WinUI.Predstava
                 errorProvider1.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider1.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
@@ -170,11 +174,6 @@ namespace ePozoriste.WinUI.Predstava
                 errorProvider1.SetError(txtOpis, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtOpis.Text, @"^[a-zA-Z ]+$"))
-            {
-                errorProvider1.SetError(txtOpis, Properties.Resources.NeispravanFormat);
-                e.Cancel = true;
-            }
             else
             {
                 errorProvider1.SetError(txtOpis, null);
@@ -188,7 +187,7 @@ namespace ePozoriste.WinUI.Predstava
                 errorProvider1.SetError(txtReziser, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtReziser.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtReziser.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider1.SetError(txtReziser, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;

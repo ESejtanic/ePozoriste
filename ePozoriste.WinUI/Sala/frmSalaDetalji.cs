@@ -50,7 +50,6 @@ namespace ePozoriste.WinUI.Sala
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 
@@ -62,6 +61,7 @@ namespace ePozoriste.WinUI.Sala
                 txtNaziv.Text = sala.Naziv;
                 txtKapacitet.Text = sala.Kapacitet.ToString();
                 chBKlimatizacija.Text = sala.Klimatizacija.ToString();
+                chBKlimatizacija.Checked = sala.Klimatizacija;
                 txtlng.Text = sala.Lng;
                 txtlat.Text = sala.Lat;
             }
@@ -74,7 +74,7 @@ namespace ePozoriste.WinUI.Sala
                 errorProvider1.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider1.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;

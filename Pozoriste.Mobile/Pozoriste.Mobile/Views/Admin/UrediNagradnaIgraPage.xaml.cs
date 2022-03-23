@@ -42,11 +42,11 @@ namespace Pozoriste.Mobile.Views.Admin
                 }
             }
 
-            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z ]+$"))
+            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Polje naziv se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Opis.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(this.Opis.Text, @"^[a-zA-Z šđčćžŠĐČĆŽ]+$"))
             {
                 await DisplayAlert("Greška", "Polje opis se sastoji samo od slova", "OK");
             }

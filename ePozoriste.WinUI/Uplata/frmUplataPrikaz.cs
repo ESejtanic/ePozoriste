@@ -56,7 +56,7 @@ namespace ePozoriste.WinUI.Uplata
         private async void cmbSponzor_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbSponzor.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadUplate(id);
             }

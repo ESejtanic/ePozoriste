@@ -49,7 +49,7 @@ namespace ePozoriste.WinUI.Sjediste
         private async void cmbSala_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbSala.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadSjediste(id);
             }
@@ -70,9 +70,14 @@ namespace ePozoriste.WinUI.Sjediste
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
             var idObj = cmbSala.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int salaId))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int salaId))
             {
                 request.SalaId = salaId;
+            }
+            else
+            {
+                MessageBox.Show("Odaberite salu");
+                return;
             }
             request.Red = Convert.ToInt32(txtRed.Text);
             request.Kolona = Convert.ToInt32(txtKolona.Text);

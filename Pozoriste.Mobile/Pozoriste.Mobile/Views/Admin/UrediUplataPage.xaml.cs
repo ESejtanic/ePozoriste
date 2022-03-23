@@ -35,14 +35,22 @@ namespace Pozoriste.Mobile.Views.Admin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z ]+$"))
+            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Naziv se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Svrha.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(this.Svrha.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Polje 'Svrha' se sastoji samo od slova", "OK");
-            }          
+            }
+            else if (!double.TryParse(this.Iznos.Text, out double value))
+            {
+                await DisplayAlert("Greška", "Polje 'Svrha' se sastoji samo od cifara", "OK");
+            }
+            else if (value <= 0)
+            {
+                await DisplayAlert("Greška", "Polje 'Iznos' mora biti veće od 0", "OK");
+            }
             else if (this.Sponzori.SelectedItem == null)
             {
                 await DisplayAlert("Greška", "Trebate odabrati aponzora", "OK");

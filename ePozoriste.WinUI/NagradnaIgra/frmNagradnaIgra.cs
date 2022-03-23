@@ -94,7 +94,6 @@ namespace ePozoriste.WinUI.NagradnaIgra
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
 
@@ -106,7 +105,7 @@ namespace ePozoriste.WinUI.NagradnaIgra
                 errorProvider.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
             }
-            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z ]+$"))
+            else if (!Regex.IsMatch(txtNaziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ]+$"))
             {
                 errorProvider.SetError(txtNaziv, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
@@ -122,11 +121,6 @@ namespace ePozoriste.WinUI.NagradnaIgra
             if (string.IsNullOrEmpty(txtOpis.Text))
             {
                 errorProvider.SetError(txtOpis, Properties.Resources.Validation_RequiredField);
-                e.Cancel = true;
-            }
-            else if (!Regex.IsMatch(txtOpis.Text, @"^[a-zA-Z ]+$"))
-            {
-                errorProvider.SetError(txtOpis, Properties.Resources.NeispravanFormat);
                 e.Cancel = true;
             }
             else

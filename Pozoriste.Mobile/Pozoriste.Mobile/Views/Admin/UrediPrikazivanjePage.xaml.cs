@@ -41,9 +41,13 @@ namespace Pozoriste.Mobile.Views.Admin
             {
                 await DisplayAlert("Greška", "Neispravan datum", "OK");
             }
-            else if (!Regex.IsMatch(this.Cijena.Text, @"^[0-9]+$"))
+            else if (!decimal.TryParse(this.Cijena.Text, out decimal value))
             {
                 await DisplayAlert("Greška", "Cijena sadrzi samo brojeve", "OK");
+            }
+            else if (value <= 0)
+            {
+                await DisplayAlert("Greška", "Cijena mora biti veća od 0", "OK");
             }
             else if (this.Sale.SelectedItem == null)
             {

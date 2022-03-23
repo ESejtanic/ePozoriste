@@ -59,7 +59,7 @@ namespace ePozoriste.WinUI.Prikazivanje
         private async void cmbPredstava_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbPredstava.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadPrikazivanja(id);
             }

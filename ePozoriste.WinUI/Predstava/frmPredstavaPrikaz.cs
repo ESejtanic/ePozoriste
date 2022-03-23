@@ -53,7 +53,7 @@ namespace ePozoriste.WinUI.Predstava
         private async void cmbZanr_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbZanr.SelectedValue;
-            if (int.TryParse(idObj.ToString(), out int id))
+            if (idObj != null && int.TryParse(idObj.ToString(), out int id))
             {
                 await LoadPredstave(id);
             }

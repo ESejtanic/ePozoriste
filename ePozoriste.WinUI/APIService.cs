@@ -7,6 +7,7 @@ using Flurl.Http;
 using Flurl;
 using ePozoriste.Model;
 using System.Windows.Forms;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ePozoriste.WinUI
 {
@@ -52,9 +53,26 @@ namespace ePozoriste.WinUI
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                    }
+                    else
+                    {
+                        var errors2 = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+                        if (errors2 != null)
+                            foreach (var error in errors2.Errors)
+                            {
+                                stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                            }
+                        else
+                        {
+                            var errors3 = await ex.GetResponseStringAsync();
+                            if (errors3 != null) stringBuilder.AppendLine(errors3);
+                        }
                     }
 
                     MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -86,9 +104,26 @@ namespace ePozoriste.WinUI
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                    }
+                    else
+                    {
+                        var errors2 = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+                        if (errors2 != null)
+                            foreach (var error in errors2.Errors)
+                            {
+                                stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                            }
+                        else
+                        {
+                            var errors3 = await ex.GetResponseStringAsync();
+                            if (errors3 != null) stringBuilder.AppendLine(errors3);
+                        }
                     }
 
                     MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -121,9 +156,26 @@ namespace ePozoriste.WinUI
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                    }
+                    else
+                    {
+                        var errors2 = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+                        if (errors2 != null)
+                            foreach (var error in errors2.Errors)
+                            {
+                                stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                            }
+                        else
+                        {
+                            var errors3 = await ex.GetResponseStringAsync();
+                            if (errors3 != null) stringBuilder.AppendLine(errors3);
+                        }
                     }
 
                     MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -156,9 +208,26 @@ namespace ePozoriste.WinUI
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                     var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                        }
+                    }
+                    else
+                    {
+                        var errors2 = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+                        if (errors2 != null)
+                            foreach (var error in errors2.Errors)
+                            {
+                                stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                            }
+                        else
+                        {
+                            var errors3 = await ex.GetResponseStringAsync();
+                            if (errors3 != null) stringBuilder.AppendLine(errors3);
+                        }
                     }
 
                     MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);

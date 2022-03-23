@@ -100,30 +100,50 @@ namespace ePozoriste.WinUI.Ulaznica
             {
                 var idObj = cmbPrikazivanje.SelectedValue;
 
-                if (int.TryParse(idObj.ToString(), out int prikazivanjeId))
+                if (idObj != null && int.TryParse(idObj.ToString(), out int prikazivanjeId))
                 {
                     request.PrikazivanjeId = prikazivanjeId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite prikazivanje");
+                    return;
                 }
 
                 var kupacIdObj = cmbKupac.SelectedValue;
 
-                if (int.TryParse(kupacIdObj.ToString(), out int kupacId))
+                if (kupacIdObj != null && int.TryParse(kupacIdObj.ToString(), out int kupacId))
                 {
                     request.KupacId = kupacId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite kupca");
+                    return;
                 }
 
                 var sjedisteIdObj = cmbSjediste.SelectedValue;
 
-                if (int.TryParse(sjedisteIdObj.ToString(), out int sjedisteId))
+                if (sjedisteIdObj != null && int.TryParse(sjedisteIdObj.ToString(), out int sjedisteId))
                 {
                     request.SjedisteId = sjedisteId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite sjediste");
+                    return;
                 }
 
                 var rezervIdObj = cmbREzervacija.SelectedValue;
 
-                if (int.TryParse(rezervIdObj.ToString(), out int rezervId))
+                if (rezervIdObj != null && int.TryParse(rezervIdObj.ToString(), out int rezervId))
                 {
                     request.RezervacijaId = rezervId;
+                }
+                else
+                {
+                    MessageBox.Show("Odaberite rezervaciju");
+                    return;
                 }
 
                 if (_id.HasValue)
@@ -140,7 +160,6 @@ namespace ePozoriste.WinUI.Ulaznica
             else
             {
                 MessageBox.Show("Operacija nije uspjela");
-                this.Close();
             }
         }
     }

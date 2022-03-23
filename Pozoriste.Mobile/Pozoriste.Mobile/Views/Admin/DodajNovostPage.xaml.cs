@@ -33,11 +33,11 @@ namespace Pozoriste.Mobile.Views.Admin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z ]+$"))
+            if (this.Naziv.Text == null || !Regex.IsMatch(this.Naziv.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Polje naziv se sastoji samo od slova", "OK");
             }
-            else if (!Regex.IsMatch(this.Tekst.Text, @"^[a-zA-Z ]+$"))
+            else if (this.Tekst.Text == null || !Regex.IsMatch(this.Tekst.Text, @"^[a-zA-Z0-9.!?– šđčćžŠĐČĆŽ\""'-]+$"))
             {
                 await DisplayAlert("Greška", "Polje opis se sastoji samo od slova", "OK");
             }
